@@ -1,27 +1,33 @@
-public MovablePoint(int x, int y, int xSpeed, int ySpeed){
-        this.x = x;
-        this.y = y;
-        this.xSpeed = xSpeed;
-        this.ySpeed = ySpeed;
+class MovableCircle extends MovablePoint implements Movable{
+    private int radius;
+    private MovablePoint center;
+
+    public MovableCircle(int x, int y, int xSpeed, int ySpeed, int radius){
+        super(x,y,xSpeed,ySpeed);
+        this.center = new MovablePoint(x,y,xSpeed,ySpeed);
+        this.radius = radius;
     }
+
     public String toString(){
-        return "("+ x +","+y+"),speed=(" + xSpeed + "," + ySpeed + ")";
+        return super.toString() + ",radius=" + radius;
+    }
+    @Override
+    public void moveUp() {
+        center.moveUp();
     }
 
     @Override
-    public void moveUp() {
-        y -=ySpeed;
+    public void moveDown() {
+        center.moveDown();
     }
+
     @Override
-    public void moveDown(){
-        y += ySpeed;
+    public void moveLeft() {
+        center.moveLeft();
     }
+
     @Override
-    public void moveLeft(){
-        x -=xSpeed;
-    }
-    @Override
-    public void moveRight(){
-        x +=xSpeed;
+    public void moveRight() {
+        center.moveRight();
     }
 }
